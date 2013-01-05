@@ -24,7 +24,7 @@ $json_out = true;
 // Status variables
 $status = "ok";
 $errors = array();
-$meaningful_errors = false;
+$meaningful_errors = true;
 
 
 // Load GET parameters
@@ -58,7 +58,7 @@ if (!empty($_GET['count']) && is_numeric($_GET['count']))
 	if ($value > $max_topics)
 	{
 		if ($meaningful_errors) array_push($errors, "Topic number greater than 'max_topics'");
-		if (!$meaningful_errors) array_push($errors, "1");
+		if (!$meaningful_errors) array_push($errors, "2");
 		$status = "err";
 		$topics_to_return = 1;
 	} else {
@@ -68,12 +68,21 @@ if (!empty($_GET['count']) && is_numeric($_GET['count']))
 
 
 // Load topics and shuffle them
-$topics_file = file_get_contents("topics.txt");
-$topics = explode("\n", $topics_file);
-$shuffleCount = rand(10,20);
-for ($cS = 0; $cS < $shuffleCount; $cS++)
+if (!file_exists("topics.txt"))
 {
-	shuffle($topics);
+	if ($meaningful_errors) array_push($errors, "Missing topics.txt");
+	if (!$meaningful_errors) array_push($errors, "1");
+	$status = "err";
+	$topics = array();
+} else {
+	$topics_file = file_get_contents("topics.txt");
+	$topics = explode("\n", $topics_file);
+	
+	$shuffleCount = rand(10,20);
+	for ($cS = 0; $cS < $shuffleCount; $cS++)
+	{
+		shuffle($topics);
+	}
 }
 
 
@@ -88,6 +97,7 @@ for ($cT = 0; $cT < count($topics); $cT++)
 function getTopic($topics, $prefix, $prefix_enabled)
 {
 	$topicID = rand(0, count($topics)-1);
+	if (count($topics) == 0) return "?";
 	$topic = $topics[$topicID];
 	if ($prefix_enabled)
 	{

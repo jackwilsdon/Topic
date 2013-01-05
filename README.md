@@ -35,4 +35,5 @@ Example
 	
 Error Codes
 -----------
- - `1` - `count` exceeds `$max_topics`. Either decrease your `count`, or increase `$max_topics` inside `topic.php`.
+ - `1` - Missing `topics.txt`. All results will be returned as `?`.
+ - `2` - `count` exceeds `$max_topics`. Either decrease your `count`, or increase `$max_topics` inside `topic.php`.
