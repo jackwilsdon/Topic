@@ -11,6 +11,8 @@ Usage
  - `json=[true/false]` - Should the data be returned in JSON format? **Note**: If data is not returned in JSON format, count will be ignored. Default: `true`.
  - `count=[number]` - Set the number of topics to be retuned (JSON only). Default: `1`.
  
+A list of topics is stored in `topics.txt`. I'd reccomend modifying this list before using it, as the one provided does not contain many.
+ 
 Example
 -------
 **Query**
