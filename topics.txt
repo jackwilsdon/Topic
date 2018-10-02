@@ -1,4 +1,3 @@
-do you enjoy the relaxing sound of whales?
 how you met
 how your day was
 school or your job
@@ -21,4 +20,5 @@ your favourite tv show
 your favourite holiday destination
 your favourite, or best memory
 your favourite food
+your favourite whale noise
 your pet(s)
